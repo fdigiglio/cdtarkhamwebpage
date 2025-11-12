@@ -1,10 +1,3 @@
-// Database Configuration
-const DB_CONFIG = {
-    host: '192.168.2.10',
-    database: 'arkham_asylum',
-    table: 'arkham_prisoners'
-};
-
 // Static prisoner data for display
 // Replace image filenames with your PNG files in the images/ folder
 const prisonersData = [
@@ -144,8 +137,8 @@ window.addEventListener('click', (e) => {
     }
 });
 
-// Handle search - construct vulnerable SQL query
-function handleSearch() {
+// Handle search - construct vulnerable SQL query and execute
+async function handleSearch() {
     const userInput = searchInput.value.trim();
     
     if (!userInput) {
@@ -153,18 +146,54 @@ function handleSearch() {
         return;
     }
     
-    // Intentionally vulnerable SQL query construction
-    const query = `SELECT * FROM ${DB_CONFIG.table} WHERE prisoner = '${userInput}'`;
+    try {
+        // Call the PHP API
+        const response = await fetch(`api.php?search=${encodeURIComponent(userInput)}`);
+        const data = await response.json();
+        
+        if (data.success) {
+            // Display the query that was executed
+            sqlQuery.textContent = data.query;
+            queryDisplay.style.display = 'block';
+            
+            // Display results
+            if (data.results.length > 0) {
+                displaySearchResults(data.results);
+            } else {
+                alert('No prisoners found matching that search');
+            }
+        } else {
+            alert('Database error: ' + data.error);
+        }
+    } catch (error) {
+        console.error('API call failed:', error);
+        alert('Connection to database failed');
+    }
+}
+
+// Display search results
+function displaySearchResults(results) {
+    // Remove any existing search results
+    const existingResults = document.querySelector('.search-results');
+    if (existingResults) {
+        existingResults.remove();
+    }
     
-    // Display the query
-    sqlQuery.textContent = query;
-    queryDisplay.style.display = 'block';
+    const resultsDiv = document.createElement('div');
+    resultsDiv.className = 'search-results';
+    resultsDiv.innerHTML = `
+        <h3>Database Search Results:</h3>
+        ${results.map(prisoner => `
+            <div class="result-item">
+                <strong>${prisoner.prisoner}</strong> - ${prisoner.alias}<br>
+                Cell Block: ${prisoner.cell_block} | Security: ${prisoner.security}<br>
+                Status: ${prisoner.status}
+            </div>
+        `).join('')}
+    `;
     
-    // Note: This is where you would verify against your existing database at 10.10.1.2
-    // For now, we're just displaying the query that would be executed
-    console.log('Query to be executed against database:', query);
-    console.log('Database server:', DB_CONFIG.host);
-    console.log('Database name:', DB_CONFIG.database);
+    // Insert after the query display
+    queryDisplay.parentNode.insertBefore(resultsDiv, queryDisplay.nextSibling);
 }
 
 // Render static prisoner cards
