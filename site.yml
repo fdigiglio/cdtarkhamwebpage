@@ -1,0 +1,86 @@
+- name: make arkham webserver
+  hosts: web
+  become: yes
+  gather_facts: yes
+
+  tasks:
+    - name: Ensure password authentication is enabled in sshd
+      ansible.builtin.lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^PasswordAuthentication'
+        line: 'PasswordAuthentication yes'
+      notify: Restart ssh
+
+    - name: Update apt cache and upgrade packages
+      ansible.builtin.apt:
+        update_cache: yes
+        upgrade: dist
+
+    - name: Install required packages
+      ansible.builtin.apt:
+        name:
+          - curl
+          - vim
+          - openssh-server
+          - net-tools
+          - apache2
+          - php
+          - php-mysql
+          - default-mysql-client
+          - git
+        state: present
+
+    - name: Clone website repo
+      ansible.builtin.git:
+        repo: 'https://github.com/fdigiglio/cdtarkhamwebpage.git'
+        dest: /tmp/arkham-site
+        version: main
+        force: yes
+
+    - name: Ensure web root exists
+      ansible.builtin.file:
+        path: /var/www/html
+        state: directory
+        mode: "0755"
+
+    - name: Copy website files to web root
+      ansible.builtin.copy:
+        src: /tmp/arkham-site/
+        dest: /var/www/html/
+        remote_src: yes
+        mode: preserve
+
+    - name: Set proper permissions for web files
+      ansible.builtin.file:
+        path: /var/www/html
+        owner: www-data
+        group: www-data
+        recurse: yes
+
+    - name: Get installed PHP version
+      ansible.builtin.shell: php -v | head -n1 | grep -oP '\d+\.\d+' | head -n1
+      register: php_version
+      changed_when: false
+
+    - name: Enable PHP module for Apache
+      ansible.builtin.command:
+        cmd: "a2enmod php{{ php_version.stdout }}"
+      notify: restart apache
+      when: php_version.stdout is defined
+
+    - name: Start and enable Apache service
+      ansible.builtin.systemd:
+        name: apache2
+        state: started
+        enabled: yes
+
+  handlers:
+    - name: Restart ssh
+      ansible.builtin.service:
+        name: ssh
+        state: restarted
+
+    - name: restart apache
+      ansible.builtin.systemd:
+        name: apache2
+        state: restarted

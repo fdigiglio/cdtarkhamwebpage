@@ -8,7 +8,7 @@ header('Access-Control-Allow-Headers: Content-Type');
 // Database configuration
 $host = '192.168.2.10';
 $dbname = 'arkham_asylum';
-$username = 'root';  // Replace with your actual database username
+$username = 'arkham_app';  // Replace with your actual database username
 $password = 'blueteam';  // Replace with your actual database password
 
 try {
