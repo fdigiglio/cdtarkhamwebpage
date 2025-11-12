@@ -4,10 +4,8 @@ const prisonersData = [
     {
         prisoner: "The Joker",
         alias: "Unknown",
-        cell_block: "A1",
         security: "Max",
         diagnosis: "Antisocial personality disorder",
-        dossier: "joker_casefile.txt",
         status: "In custody",
         notes: "High escape risk; confiscate trick items",
         image: "images/joker.png"
@@ -15,10 +13,8 @@ const prisonersData = [
     {
         prisoner: "Harley Quinn",
         alias: "Dr. Harleen Quinzel",
-        cell_block: "A2",
         security: "High",
         diagnosis: "Histrionic personality disorder",
-        dossier: "quinn_casefile.txt",
         status: "In custody",
         notes: "Former psychiatrist; accomplice to Joker; unpredictable behavior",
         image: "images/harley.png"
@@ -26,10 +22,8 @@ const prisonersData = [
     {
         prisoner: "Two-Face",
         alias: "Harvey Dent",
-        cell_block: "B3",
         security: "Medium",
         diagnosis: "Dissociative identity disorder",
-        dossier: "dent_casefile.txt",
         status: "In custody",
         notes: "Coin confiscated; therapy sessions twice weekly",
         image: "images/twoface.png"
@@ -37,10 +31,8 @@ const prisonersData = [
     {
         prisoner: "The Riddler",
         alias: "Edward Nygma",
-        cell_block: "B4",
         security: "Medium",
         diagnosis: "Narcissistic personality disorder",
-        dossier: "riddler_casefile.txt",
         status: "In custody",
         notes: "Monitor all communications for coded messages; compulsive riddle-making",
         image: "images/riddler.png"
@@ -48,10 +40,8 @@ const prisonersData = [
     {
         prisoner: "Scarecrow",
         alias: "Dr. Jonathan Crane",
-        cell_block: "C5",
         security: "High",
         diagnosis: "Paranoid schizophrenia",
-        dossier: "crane_casefile.txt",
         status: "In custody",
         notes: "Keep sedated; fear toxin research confiscated",
         image: "images/scarecrow.png"
@@ -59,10 +49,8 @@ const prisonersData = [
     {
         prisoner: "Bane",
         alias: "Unknown",
-        cell_block: "C6",
         security: "Max",
         diagnosis: "Venom dependency",
-        dossier: "bane_casefile.txt",
         status: "In custody",
         notes: "No Venom access; regular strength monitoring",
         image: "images/bane.png"
@@ -70,10 +58,8 @@ const prisonersData = [
     {
         prisoner: "Poison Ivy",
         alias: "Dr. Pamela Isley",
-        cell_block: "D7",
         security: "High",
         diagnosis: "Chlorokinetic mutation",
-        dossier: "ivy_casefile.txt",
         status: "In custody",
         notes: "No plant contact; pheromone-filtered cell",
         image: "images/ivy.png"
@@ -81,10 +67,8 @@ const prisonersData = [
     {
         prisoner: "Mr. Freeze",
         alias: "Dr. Victor Fries",
-        cell_block: "D8",
         security: "High",
         diagnosis: "Cryogenic dependency",
-        dossier: "freeze_casefile.txt",
         status: "In custody",
         notes: "Cryo-cell required; monitor temperature constantly",
         image: "images/freeze.png"
@@ -92,10 +76,8 @@ const prisonersData = [
     {
         prisoner: "Killer Croc",
         alias: "Waylon Jones",
-        cell_block: "E9",
         security: "Max",
         diagnosis: "Atavism with reptilian mutation",
-        dossier: "croc_casefile.txt",
         status: "In custody",
         notes: "Reinforced containment; extreme aggression; feed through secure slot only",
         image: "images/croc.png"
@@ -103,10 +85,8 @@ const prisonersData = [
     {
         prisoner: "Ra's al Ghul",
         alias: "Unknown (The Demon's Head)",
-        cell_block: "F10",
         security: "Max",
         diagnosis: "Megalomania with immortality complex",
-        dossier: "alghul_casefile.txt",
         status: "In custody",
         notes: "League of Assassins threat; maximum security; no visitors without clearance",
         image: "images/rasalghul.png"
@@ -211,7 +191,6 @@ function renderPrisoners() {
                 <h3 class="prisoner-name">${prisoner.prisoner}</h3>
                 <div class="prisoner-meta">
                     <span class="alias">Alias: ${prisoner.alias}</span>
-                    <span class="cell-block">Cell Block: ${prisoner.cell_block}</span>
                     <span class="security">Security: ${prisoner.security}</span>
                 </div>
             </div>
@@ -273,10 +252,6 @@ function showPrisonerDetails(prisoner) {
             </div>
             
             <div class="detail-row">
-                <strong>Cell Assignment:</strong> ${prisoner.cell_block}
-            </div>
-            
-            <div class="detail-row">
                 <strong>Security Classification:</strong> ${prisoner.security}
             </div>
             
@@ -286,10 +261,6 @@ function showPrisonerDetails(prisoner) {
             
             <div class="detail-row">
                 <strong>Psychiatric Diagnosis:</strong> ${prisoner.diagnosis}
-            </div>
-            
-            <div class="detail-row">
-                <strong>Case File Reference:</strong> ${prisoner.dossier}
             </div>
             
             <div class="detail-row">
