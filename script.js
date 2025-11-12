@@ -1,6 +1,6 @@
 // Database Configuration
 const DB_CONFIG = {
-    host: '10.10.1.2',
+    host: '192.168.2.10',
     database: 'arkham_asylum',
     table: 'arkham_prisoners'
 };
