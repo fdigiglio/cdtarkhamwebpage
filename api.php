@@ -18,7 +18,7 @@ try {
         $searchTerm = $_GET['search'];
         
         // Intentionally vulnerable query for educational purposes
-        $query = "SELECT * FROM arkham_prisoners WHERE prisoner = '$searchTerm'";
+        $query = "SELECT * FROM arkham_prisoners WHERE prisoner_name = '$searchTerm'";
         
         $stmt = $pdo->query($query);
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
