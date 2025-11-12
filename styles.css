@@ -1,0 +1,890 @@
+/* ==========================================
+   ARKHAM ASYLUM - WANTED
+   Gotham Dark Theme Stylesheet
+   ========================================== */
+
+:root {
+    --gotham-dark: #0a0e14;
+    --gotham-darker: #05080c;
+    --gotham-gray: #1a1f28;
+    --gotham-light-gray: #2a3241;
+    --gotham-yellow: #f4d03f;
+    --gotham-yellow-dim: #d4b41f;
+    --gotham-red: #c0392b;
+    --gotham-red-glow: #ff4444;
+    --gotham-text: #e8e8e8;
+    --gotham-text-dim: #a0a0a0;
+    --gotham-border: #3a3f48;
+    --comic-purple: #6b2d5c;
+    --comic-green: #2d5c3f;
+    --comic-blue: #1e3a5f;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', 'Helvetica', sans-serif;
+    background: linear-gradient(135deg, var(--gotham-darker) 0%, var(--gotham-dark) 50%, #0d1117 100%);
+    color: var(--gotham-text);
+    min-height: 100vh;
+    line-height: 1.6;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,.2) 2px, rgba(0,0,0,.2) 4px),
+        repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,.2) 2px, rgba(0,0,0,.2) 4px);
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 0;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, transparent 20%, var(--gotham-darker) 80%);
+    animation: darkPulse 15s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes darkPulse {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.1); }
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* ==========================================
+   HEADER
+   ========================================== */
+
+.header {
+    text-align: center;
+    padding: 50px 20px;
+    margin-bottom: 40px;
+    background: 
+        linear-gradient(180deg, rgba(26, 31, 40, 0.95) 0%, rgba(10, 14, 20, 0.8) 100%),
+        repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(244, 208, 63, 0.03) 10px, rgba(244, 208, 63, 0.03) 20px);
+    border-bottom: 5px solid var(--gotham-yellow);
+    box-shadow: 
+        0 15px 40px rgba(0, 0, 0, 0.7),
+        0 0 60px rgba(244, 208, 63, 0.2),
+        inset 0 -2px 10px rgba(244, 208, 63, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(244, 208, 63, 0.1), transparent);
+    animation: headerShine 8s ease-in-out infinite;
+}
+
+@keyframes headerShine {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(50%); }
+}
+
+.header-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.logo-section {
+    margin-bottom: 20px;
+}
+
+.bat-logo {
+    width: 200px;
+    height: 100px;
+    color: var(--gotham-yellow);
+    filter: drop-shadow(0 0 20px var(--gotham-yellow)) drop-shadow(0 0 40px rgba(244, 208, 63, 0.5));
+    animation: batPulse 4s ease-in-out infinite;
+}
+
+@keyframes batPulse {
+    0%, 100% { 
+        opacity: 1;
+        transform: scale(1);
+        filter: drop-shadow(0 0 20px var(--gotham-yellow)) drop-shadow(0 0 40px rgba(244, 208, 63, 0.5));
+    }
+    50% { 
+        opacity: 0.8;
+        transform: scale(1.05);
+        filter: drop-shadow(0 0 30px var(--gotham-yellow)) drop-shadow(0 0 60px rgba(244, 208, 63, 0.7));
+    }
+}
+
+.main-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    letter-spacing: 10px;
+    color: var(--gotham-yellow);
+    text-shadow: 
+        3px 3px 0 rgba(0, 0, 0, 0.9),
+        5px 5px 0 rgba(192, 57, 43, 0.5),
+        0 0 20px rgba(244, 208, 63, 0.6),
+        0 0 40px rgba(244, 208, 63, 0.4),
+        0 0 60px rgba(244, 208, 63, 0.2);
+    margin-bottom: 15px;
+    font-family: 'Impact', 'Arial Black', sans-serif;
+    position: relative;
+    display: inline-block;
+}
+
+.main-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gotham-yellow), transparent);
+    box-shadow: 0 0 10px var(--gotham-yellow);
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: var(--gotham-text-dim);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+/* ==========================================
+   SEARCH SECTION
+   ========================================== */
+
+.search-section {
+    margin-bottom: 40px;
+}
+
+.search-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: linear-gradient(145deg, var(--gotham-gray) 0%, var(--gotham-light-gray) 100%);
+    padding: 35px;
+    border-radius: 12px;
+    border: 3px solid var(--gotham-border);
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.8),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    position: relative;
+}
+
+.search-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 6px 6px;
+    border-radius: 12px;
+    pointer-events: none;
+}
+
+.search-box {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+#searchInput {
+    flex: 1;
+    padding: 18px 25px;
+    font-size: 1.05rem;
+    background: var(--gotham-darker);
+    color: var(--gotham-text);
+    border: 3px solid var(--gotham-border);
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.3s ease;
+    font-family: 'Courier New', monospace;
+}
+
+#searchInput:focus {
+    border-color: var(--gotham-yellow);
+    box-shadow: 
+        0 0 20px rgba(244, 208, 63, 0.4),
+        inset 0 2px 5px rgba(0, 0, 0, 0.5);
+    background: rgba(10, 14, 20, 0.8);
+}
+
+.search-button {
+    padding: 18px 40px;
+    font-size: 1.1rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, var(--gotham-yellow) 0%, var(--gotham-yellow-dim) 100%);
+    color: var(--gotham-dark);
+    border: 3px solid var(--gotham-yellow-dim);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 
+        0 5px 15px rgba(244, 208, 63, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    font-family: 'Impact', 'Arial Black', sans-serif;
+}
+
+.search-button:hover {
+    background: linear-gradient(135deg, var(--gotham-yellow-dim) 0%, var(--gotham-yellow) 100%);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 
+        0 8px 20px rgba(244, 208, 63, 0.6),
+        0 0 30px rgba(244, 208, 63, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.search-button:active {
+    transform: translateY(-1px) scale(0.98);
+}
+
+/* Query Display */
+.query-display {
+    margin-top: 20px;
+    padding: 20px;
+    background: var(--gotham-darker);
+    border: 2px solid var(--gotham-border);
+    border-radius: 5px;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.query-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.query-label {
+    font-weight: bold;
+    color: var(--gotham-yellow);
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.mode-indicator {
+    padding: 5px 12px;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.status-indicator {
+    padding: 5px 12px;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.status-indicator.success {
+    background: #27ae60;
+    color: white;
+}
+
+.status-indicator.error {
+    background: var(--gotham-red);
+    color: white;
+}
+
+.mode-indicator.vulnerable {
+    background: var(--gotham-red);
+    color: white;
+}
+
+.mode-indicator.safe {
+    background: #27ae60;
+    color: white;
+}
+
+.sql-query {
+    padding: 15px;
+    background: #0d1117;
+    color: #58a6ff;
+    border-left: 4px solid var(--gotham-yellow);
+    border-radius: 3px;
+    overflow-x: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.explanation {
+    margin-top: 15px;
+    padding: 15px;
+    background: rgba(244, 208, 63, 0.1);
+    border-left: 4px solid var(--gotham-yellow);
+    border-radius: 3px;
+    color: var(--gotham-text);
+    font-size: 0.95rem;
+}
+
+.explanation strong {
+    color: var(--gotham-yellow);
+}
+
+.explanation code {
+    background: var(--gotham-darker);
+    padding: 2px 6px;
+    border-radius: 3px;
+    color: #58a6ff;
+    font-family: 'Courier New', monospace;
+}
+
+/* ==========================================
+   PRISONERS GRID
+   ========================================== */
+
+.prisoners-section {
+    margin-bottom: 40px;
+}
+
+.prisoners-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 20px 0;
+}
+
+.prisoner-card {
+    background: linear-gradient(145deg, var(--gotham-gray) 0%, var(--gotham-light-gray) 100%);
+    border: 3px solid var(--gotham-border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    position: relative;
+    animation: fadeIn 0.5s ease;
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.7),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Comic book halftone effect */
+.prisoner-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 4px 4px;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9) rotateY(-10deg);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) rotateY(0deg);
+    }
+}
+
+.prisoner-card:hover {
+    transform: translateY(-12px) scale(1.03);
+    border-color: var(--gotham-yellow);
+    box-shadow: 
+        0 15px 40px rgba(0, 0, 0, 0.9), 
+        0 0 30px rgba(244, 208, 63, 0.4),
+        0 0 60px rgba(244, 208, 63, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    filter: brightness(1.1);
+}
+
+.prisoner-card:active {
+    transform: translateY(-8px) scale(1.01);
+}
+
+.prisoner-card::before {
+    content: 'WANTED';
+    position: absolute;
+    top: 15px;
+    right: -35px;
+    background: linear-gradient(135deg, var(--gotham-red) 0%, var(--gotham-red-glow) 100%);
+    color: white;
+    padding: 5px 40px;
+    font-weight: bold;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    transform: rotate(45deg);
+    box-shadow: 
+        0 2px 10px rgba(0, 0, 0, 0.7),
+        0 0 15px rgba(255, 68, 68, 0.5);
+    z-index: 10;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.prisoner-image {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    background: linear-gradient(180deg, var(--gotham-light-gray) 0%, var(--gotham-gray) 100%);
+    border-bottom: 4px solid var(--gotham-yellow);
+    position: relative;
+    overflow: hidden;
+}
+
+.prisoner-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, transparent 30%, rgba(244, 208, 63, 0.05) 100%);
+    pointer-events: none;
+}
+
+.prisoner-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.prisoner-card:hover .prisoner-image img {
+    transform: scale(1.1);
+}
+
+.prisoner-info {
+    padding: 20px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, transparent 50%);
+}
+
+.prisoner-name {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--gotham-yellow);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 
+        2px 2px 0 rgba(0, 0, 0, 0.8),
+        0 0 10px rgba(244, 208, 63, 0.5);
+    font-family: 'Impact', 'Arial Black', sans-serif;
+}
+
+.prisoner-tagline {
+    font-size: 0.9rem;
+    color: var(--gotham-text-dim);
+    font-style: italic;
+    margin-bottom: 15px;
+    min-height: 40px;
+}
+
+.prisoner-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 0.85rem;
+}
+
+.prisoner-meta span {
+    padding: 6px 10px;
+    background: rgba(0, 0, 0, 0.3);
+    border-left: 3px solid var(--gotham-yellow);
+    border-radius: 3px;
+    color: var(--gotham-text);
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.prisoner-meta span:hover {
+    background: rgba(244, 208, 63, 0.1);
+    border-left-color: var(--gotham-red);
+    padding-left: 15px;
+}
+
+.prisoner-meta .alias {
+    border-left-color: #3498db;
+}
+
+.prisoner-meta .cell-block {
+    border-left-color: #e74c3c;
+}
+
+.prisoner-meta .security {
+    border-left-color: #f39c12;
+}
+
+.meta-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--gotham-border);
+}
+
+.meta-label {
+    color: var(--gotham-text-dim);
+    font-weight: bold;
+}
+
+.meta-value {
+    color: var(--gotham-text);
+}
+
+.threat-high {
+    color: var(--gotham-red);
+    font-weight: bold;
+}
+
+.threat-extreme {
+    color: #e74c3c;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* ==========================================
+   NO RESULTS
+   ========================================== */
+
+.no-results {
+    text-align: center;
+    padding: 60px 20px;
+    font-size: 1.3rem;
+    color: var(--gotham-text-dim);
+}
+
+/* ==========================================
+   FLAG DISPLAY
+   ========================================== */
+
+.flag-display {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    animation: flagAppear 0.5s ease;
+}
+
+@keyframes flagAppear {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.flag-content {
+    background: var(--gotham-gray);
+    padding: 40px;
+    border-radius: 10px;
+    border: 3px solid var(--gotham-yellow);
+    box-shadow: 0 0 50px rgba(244, 208, 63, 0.5), 0 10px 40px rgba(0, 0, 0, 0.8);
+    text-align: center;
+    min-width: 400px;
+}
+
+.flag-content h3 {
+    color: var(--gotham-yellow);
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(244, 208, 63, 0.5);
+}
+
+.flag-text {
+    font-family: 'Courier New', monospace;
+    font-size: 1.3rem;
+    color: #58a6ff;
+    background: var(--gotham-darker);
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    word-break: break-all;
+}
+
+.flag-hint {
+    color: var(--gotham-text-dim);
+    font-size: 0.95rem;
+}
+
+/* ==========================================
+   MODAL
+   ========================================== */
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.92);
+    backdrop-filter: blur(5px);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        backdrop-filter: blur(0px);
+    }
+    to {
+        opacity: 1;
+        backdrop-filter: blur(5px);
+    }
+}
+
+.modal-content {
+    background: linear-gradient(145deg, var(--gotham-gray) 0%, var(--gotham-dark) 100%);
+    padding: 40px;
+    border-radius: 15px;
+    border: 4px solid var(--gotham-yellow);
+    box-shadow: 
+        0 0 60px rgba(244, 208, 63, 0.4),
+        0 20px 60px rgba(0, 0, 0, 0.9),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    animation: modalSlideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Comic book panel effect */
+.modal-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(45deg, transparent 48%, rgba(244, 208, 63, 0.1) 49%, rgba(244, 208, 63, 0.1) 51%, transparent 52%),
+        linear-gradient(-45deg, transparent 48%, rgba(244, 208, 63, 0.1) 49%, rgba(244, 208, 63, 0.1) 51%, transparent 52%);
+    background-size: 20px 20px;
+    border-radius: 15px;
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8) rotateX(-20deg);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) rotateX(0deg);
+    }
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 2.5rem;
+    color: var(--gotham-text-dim);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    border: 2px solid transparent;
+}
+
+.close-modal:hover {
+    color: var(--gotham-red);
+    background: rgba(192, 57, 43, 0.2);
+    border-color: var(--gotham-red);
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 0 20px rgba(192, 57, 43, 0.5);
+}
+
+.modal-body h2 {
+    color: var(--gotham-yellow);
+    font-size: 2.2rem;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 
+        2px 2px 0 rgba(0, 0, 0, 0.8),
+        0 0 15px rgba(244, 208, 63, 0.5);
+    font-family: 'Impact', 'Arial Black', sans-serif;
+    border-bottom: 3px solid var(--gotham-yellow);
+    padding-bottom: 15px;
+}
+
+.modal-prisoner-info {
+    position: relative;
+    z-index: 1;
+}
+
+.detail-row {
+    padding: 15px;
+    margin-bottom: 12px;
+    background: rgba(0, 0, 0, 0.3);
+    border-left: 4px solid var(--gotham-yellow);
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.detail-row:hover {
+    background: rgba(244, 208, 63, 0.1);
+    border-left-width: 6px;
+    padding-left: 20px;
+    box-shadow: 0 2px 10px rgba(244, 208, 63, 0.2);
+}
+
+.detail-row strong {
+    color: var(--gotham-yellow);
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.detail-row.notes {
+    border-left-color: var(--gotham-red);
+    background: rgba(192, 57, 43, 0.1);
+}
+
+.detail-row.notes:hover {
+    background: rgba(192, 57, 43, 0.2);
+    border-left-color: var(--gotham-red-glow);
+}
+
+/* ==========================================
+   UTILITY CLASSES
+   ========================================== */
+
+.hidden {
+    display: none !important;
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN
+   ========================================== */
+
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 2rem;
+        letter-spacing: 4px;
+    }
+
+    .subtitle {
+        font-size: 0.9rem;
+    }
+
+    .search-box {
+        flex-direction: column;
+    }
+
+    .search-button {
+        width: 100%;
+    }
+
+    .prisoners-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .flag-content {
+        min-width: auto;
+        width: 90%;
+        padding: 30px 20px;
+    }
+
+    .modal-content {
+        padding: 30px 20px;
+    }
+
+    .query-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-title {
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+    }
+
+    .bat-logo {
+        width: 60px;
+        height: 30px;
+    }
+
+    .prisoner-name {
+        font-size: 1.2rem;
+    }
+}
