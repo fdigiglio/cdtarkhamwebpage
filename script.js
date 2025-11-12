@@ -183,13 +183,13 @@ function displaySearchResults(results) {
     resultsDiv.className = 'search-results';
     resultsDiv.innerHTML = `
         <h3>Database Search Results:</h3>
-        ${results.map(prisoner => `
-            <div class="result-item">
-                <strong>${prisoner.prisoner}</strong> - ${prisoner.alias}<br>
-                Cell Block: ${prisoner.cell_block} | Security: ${prisoner.security}<br>
-                Status: ${prisoner.status}
-            </div>
-        `).join('')}
+        ${results.map(prisoner => {
+            // Display all key-value pairs from the database result
+            const fields = Object.entries(prisoner)
+                .map(([key, value]) => `<strong>${key}:</strong> ${value || 'N/A'}`)
+                .join('<br>');
+            return `<div class="result-item">${fields}</div>`;
+        }).join('')}
     `;
     
     // Insert after the query display
